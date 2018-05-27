@@ -1,4 +1,6 @@
-# px4_mavros
+# px4_mavros  
+实现功能：无人机在Gazebo仿真环境下，解锁并起飞到2米高度。  
+
 ---  
 
 ## 一 环境  
@@ -65,3 +67,22 @@ target_link_libraries(offb_node
   $(catkin_LIBRARIES}  
 )  
 ```  
+  
+---  
+## 七 编译  
+* 1 编译  
+`cd ~/catkin_ws`  
+`catkin_make`  
+
+---  
+## 八 仿真测试  
+* 1 终端1：启动gazebo仿真环境  
+`cd ~/src/Firmware`    
+`make posix_sitl_default gazebo`  
+  
+* 2 终端2：运行mavros  
+`roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"`  
+  
+* 3 终端3：启动offboard控制程序  
+`source ~/catkin_ws/devel/setup.bash`  
+`rosrun offb offb_node`
